@@ -284,3 +284,4 @@ Documentación técnica basada en:
 
 **⭐ Si este proyecto te resulta interesante, dale una estrella en GitHub!**
 # galan-lithium-monitoring
+# galan-lithium-monitoring
