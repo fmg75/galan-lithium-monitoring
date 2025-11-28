@@ -249,9 +249,9 @@ galan-lithium-monitoring/
 **Tu Nombre**  
 Candidato para Analista Sr. de Inteligencia Artificial - Galan Lithium
 
-- 📧 Email: tu.email@ejemplo.com
-- 💼 LinkedIn: [tu-perfil](https://linkedin.com/in/tu-perfil)
-- 🐙 GitHub: [@tu-usuario](https://github.com/tu-usuario)
+- 📧 Email: f.mg@outlook.com
+- 💼 LinkedIn: [tu-perfil](https://www.linkedin.com/in/fernando-molas-garcia/)
+- 🐙 GitHub: [@tu-usuario](https://github.com/fmg75)
 
 ---
 
