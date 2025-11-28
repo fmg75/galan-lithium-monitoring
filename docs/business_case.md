@@ -263,10 +263,11 @@ El **Sistema Predictivo de Calidad de Salmuera** es una inversión estratégica 
 ## Contacto
 
 **Autor del Proyecto:**  
-[Tu Nombre]  
+Fernando Molas García  
 Candidato - Analista Sr. de Inteligencia Artificial  
-Email: tu.email@ejemplo.com  
-LinkedIn: [tu-perfil]
+Email: f.mg@outlook.com  
+LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)  
+GitHub: [fmg75](https://github.com/fmg75)
 
 **Propósito de este documento:**  
 Demostración de capacidad de análisis de negocio y diseño de soluciones end-to-end para Galan Lithium.

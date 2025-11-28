@@ -246,12 +246,12 @@ galan-lithium-monitoring/
 
 ## 👨‍💻 Autor
 
-**Tu Nombre**  
+**Fernando Molas García**  
 Candidato para Analista Sr. de Inteligencia Artificial - Galan Lithium
 
 - 📧 Email: f.mg@outlook.com
-- 💼 LinkedIn: [tu-perfil](https://www.linkedin.com/in/fernando-molas-garcia/)
-- 🐙 GitHub: [@tu-usuario](https://github.com/fmg75)
+- 💼 LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)
+- 🐙 GitHub: [fmg75](https://github.com/fmg75)
 
 ---
 
@@ -283,7 +283,3 @@ Documentación técnica basada en:
 ---
 
 **⭐ Si este proyecto te resulta interesante, dale una estrella en GitHub!**
-# galan-lithium-monitoring
-# galan-lithium-monitoring
-# galan-lithium-monitoring
-# galan-lithium-monitoring

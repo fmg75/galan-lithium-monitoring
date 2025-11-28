@@ -249,6 +249,8 @@ Este dataset sintético está inspirado en:
 ## Contacto
 
 Para preguntas sobre este dataset:
-- Autor: [Tu Nombre]
-- Email: tu.email@ejemplo.com
+- Autor: Fernando Molas García
+- Email: f.mg@outlook.com
+- LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)
+- GitHub: [fmg75](https://github.com/fmg75)
 - Proyecto: Galan Lithium Intelligent Monitoring System
