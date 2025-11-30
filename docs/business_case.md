@@ -1,4 +1,4 @@
-# Caso de Negocio: Sistema Predictivo de Calidad de Salmuera
+# 💼 Caso de Negocio: Sistema Predictivo de Calidad de Salmuera
 
 ## Resumen Ejecutivo
 
@@ -6,77 +6,74 @@
 
 **Solución:** Sistema inteligente que combina sensores IoT + Machine Learning + Automatización (n8n) para predicción en tiempo real de concentración de litio, reduciendo el tiempo de decisión a menos de 5 minutos.
 
-**Impacto esperado:** Mejora del 15-20 % en eficiencia operativa, reducción del 30-40 % en costos de análisis y mejora en la calidad de producto premium (cloruro de litio de alta pureza).
+**Impacto esperado:** Mejora del 15-20% en eficiencia operativa, reducción del 30-40% en costos de análisis, y mejora en calidad de producto premium (cloruro de litio alta pureza).
 
 ---
 
 ## 1. Contexto de Galan Lithium
 
-### Operación actual
+### Operación Actual
+- **Proyecto:** Hombre Muerto West, Salar del Hombre Muerto, Catamarca
+- **Recurso:** Top 10 global, 9.5 Mt LCE con bajo perfil de impurezas
+- **Estado:** 9,500 toneladas LCE acumuladas en pozas de evaporación
+- **Data operacional:** 18 meses de mediciones y análisis ya disponibles
+- **Fase 1:** 5,400 tpa (toneladas por año) de LCE
+- **Fase 2:** Escalamiento a 21,000 tpa
+- **Primera producción:** Programada para primer semestre 2026
+- **Estrategia:** Producción de cloruro de litio de alta pureza (6% LiCl concentrate)
 
-- **Proyecto:** Hombre Muerto West, Salar del Hombre Muerto, Catamarca  
-- **Fase 1:** 5.400 tpa (toneladas por año) de LCE (Litio Carbonato Equivalente)  
-- **Fase 2:** Escalamiento a 21.000 tpa  
-- **Primera producción:** Programada para primer semestre de 2026  
-- **Estrategia:** Producción de cloruro de litio de alta pureza (producto premium)
-
-### Producto estratégico
-
+### Producto Estratégico
 El **cloruro de litio** es un concentrado demandado por convertidores que producen:
+- Fosfato de hierro y litio (LFP) para baterías
+- Óxido de litio-níquel-manganeso-cobalto (NMC)
+- Otros productos químicos de litio de alto valor
 
-- Fosfato de hierro y litio (LFP) para baterías  
-- Óxido de litio-níquel-manganeso-cobalto (NMC)  
-- Otros productos químicos de litio de alto valor  
-
-**Requerimiento crítico:** Control de calidad excepcional, especialmente en contenido de litio y niveles muy bajos de contaminantes (Mg, Ca).
+**Requerimiento crítico:** Control de calidad excepcional, especialmente en contenido de litio y bajo nivel de contaminantes (Mg, Ca).
 
 ---
 
-## 2. El problema actual
+## 2. El Problema Actual
 
-### 2.1 Proceso tradicional de análisis
+### 2.1 Proceso Tradicional de Análisis
 
-```text
+```
 Toma de muestra → Transporte a laboratorio → Análisis químico → Resultado → Decisión
-     (30 min)            (2-4 horas)              (8-12 horas)         (24-48 h total)
+     (30 min)            (2-4 horas)            (8-12 horas)      (24-48h total)
 ```
 
-### 2.2 Limitaciones operativas
+### 2.2 Limitaciones Operativas
 
-| Aspecto        | Situación actual       | Impacto                      |
-|----------------|------------------------|------------------------------|
-| Frecuencia     | 1-2 análisis por día   | Información desactualizada   |
-| Cobertura      | Muestreo puntual       | No representa toda la poza   |
-| Tiempo         | 24-48 horas            | Decisiones tardías           |
-| Costo          | 50-150 USD/análisis    | Alto OPEX                    |
-| Trazabilidad   | Manual                 | Errores, falta de auditoría  |
+| Aspecto | Situación Actual | Impacto |
+|---------|-----------------|---------|
+| **Frecuencia** | 1-2 análisis por día | Información desactualizada |
+| **Cobertura** | Muestreo puntual | No representa toda la poza |
+| **Tiempo** | 24-48 horas | Decisiones tardías |
+| **Costo** | $50-150 USD/análisis | Alto OPEX |
+| **Trazabilidad** | Manual | Errores, falta de auditoría |
 
-### 2.3 Consecuencias empresariales
+### 2.3 Consecuencias Empresariales
 
 **Costos directos:**
-
-- Análisis de laboratorio: ~80.000 USD/año (Fase 1)  
-- Pérdidas por decisiones tardías: ~120.000 USD/año (estimado)  
-- Reprocesamiento de salmuera fuera de especificación  
+- Análisis de laboratorio: ~$80,000 USD/año (Fase 1)
+- Pérdidas por decisiones tardías: ~$120,000 USD/año estimado
+- Reprocesamiento de salmuera fuera de especificación
 
 **Costos indirectos:**
-
-- Tiempo de operadores en gestión manual  
-- Riesgo de calidad en producto final (impacta precio de venta)  
-- Falta de datos para optimización continua  
+- Tiempo de operadores en gestión manual
+- Riesgo de calidad en producto final (impacta precio de venta)
+- Falta de datos para optimización continua
 
 **Riesgo regulatorio:**
-
-- El régimen RIGI requiere trazabilidad robusta  
-- Auditorías ambientales necesitan registros completos  
+- RIGI requiere trazabilidad robusta
+- Auditorías ambientales necesitan registros completos
 
 ---
 
-## 3. La solución propuesta
+## 3. La Solución Propuesta
 
-### 3.1 Arquitectura del sistema
+### 3.1 Arquitectura del Sistema
 
-```text
+```
 CAPA 1: SENSORES IoT
 ├── pH
 ├── Conductividad eléctrica
@@ -91,6 +88,7 @@ CAPA 2: AUTOMATIZACIÓN (n8n)
 
 CAPA 3: INTELIGENCIA ARTIFICIAL
 ├── Modelo ML predictivo
+├── Entrenado con 18 meses de data operacional existente
 ├── API FastAPI
 └── Validación continua
 
@@ -101,195 +99,181 @@ CAPA 4: ACCIONES AUTOMATIZADAS
 └── Base de datos auditada
 ```
 
-### 3.2 Funcionalidades clave
+**Ventaja crítica:** Galan ya tiene 18 meses de datos operacionales reales de sus 9,500 toneladas LCE en pozas. Esto significa que el modelo puede entrenarse con datos REALES desde día 1, no solo sintéticos.
 
-**Predicción en tiempo real:**
+### 3.2 Funcionalidades Clave
 
-- Concentración de litio con más del 95 % de precisión  
-- Actualización cada 15-30 minutos  
-- Confianza estadística en cada predicción  
+**Predicción en Tiempo Real:**
+- Concentración de litio con 95%+ de precisión
+- Actualización cada 15-30 minutos
+- Confianza estadística en cada predicción
 
-**Alertas inteligentes:**
+**Alertas Inteligentes:**
+- Li > 4500 mg/L → "Listo para bombear a siguiente poza"
+- Mg/Li > 10 → "Riesgo de contaminación - revisar"
+- Tendencias anómalas → "Atención requerida"
 
-- Li > 4.500 mg/L → “Listo para bombear a siguiente poza”  
-- Mg/Li > 10 → “Riesgo de contaminación: revisar”  
-- Tendencias anómalas → “Atención requerida”  
-
-**Trazabilidad total:**
-
-- Registro de todas las mediciones  
-- Historial de decisiones automatizadas  
-- Auditoría para cumplimiento del régimen RIGI  
+**Trazabilidad Total:**
+- Registro de todas las mediciones
+- Historial de decisiones automatizadas
+- Auditoría para cumplimiento RIGI
 
 ---
 
-## 4. Retorno de inversión (ROI)
+## 4. Retorno de Inversión (ROI)
 
-### 4.1 Inversión estimada
+### 4.1 Inversión Estimada
 
-| Concepto                 | Costo (USD) | Notas                                             |
-|--------------------------|-------------|---------------------------------------------------|
-| Sensores IoT (5 pozas)   | 25.000      | pH, conductividad, temperatura, densidad         |
-| Gateway + conectividad   | 8.000       | 4G/satelital para zona remota                    |
-| Servidor edge computing  | 5.000       | Procesamiento local                              |
-| Desarrollo e integración | 40.000      | 3 meses, equipo interno + consultoría           |
-| Licencias software       | 6.000/año   | n8n Cloud, hosting                               |
-| **TOTAL CAPEX**          | **78.000**  |                                                   |
-| **OPEX anual**           | **12.000**  | Conectividad, mantenimiento, software            |
+| Concepto | Costo (USD) | Notas |
+|----------|-------------|-------|
+| Sensores IoT (5 pozas) | $25,000 | pH, conductividad, temp, densidad |
+| Gateway + conectividad | $8,000 | 4G/Satelital para zona remota |
+| Servidor edge computing | $5,000 | Procesamiento local |
+| Desarrollo e integración | $40,000 | 3 meses, equipo interno + consultoría |
+| Licencias software | $6,000/año | n8n Cloud, hosting |
+| **TOTAL CAPEX** | **$78,000** | |
+| **OPEX anual** | **$12,000** | Conectividad, mantenimiento, software |
 
-### 4.2 Ahorros y beneficios
+### 4.2 Ahorros y Beneficios
 
 **Ahorros directos (año 1):**
-
-- Reducción de análisis de laboratorio: 60.000 USD (alrededor de 75 % menos análisis)  
-- Mejora en eficiencia de bombeo: 80.000 USD (15 % de mejora operativa)  
-- Reducción de reprocesamiento: 40.000 USD (menos salmuera fuera de especificación)  
-
-**Total ahorros estimados:** 180.000 USD/año.
+- Reducción análisis de laboratorio: $60,000 (75% menos análisis)
+- Mejora en eficiencia de bombeo: $80,000 (15% mejora operativa)
+- Reducción de reprocesamiento: $40,000 (menos salmuera fuera de spec)
+- **Total ahorros:** $180,000/año
 
 **Beneficios indirectos:**
-
-- Mejora en calidad de cloruro de litio → potencial incremento de 2-5 % en precio de venta  
-- Datos para optimización continua → mejora acumulativa año tras año  
-- Cumplimiento RIGI más robusto → menor riesgo de perder beneficios fiscales  
+- Mejora en calidad de cloruro de litio → potencial premium de 2-5% en precio
+- Datos para optimización continua → mejora acumulativa año tras año
+- Cumplimiento RIGI más robusto → menos riesgo de perder beneficios fiscales
 
 ### 4.3 Cálculo de ROI
 
-```text
+```
 ROI = (Beneficios - Inversión) / Inversión × 100
 
-Año 1:
-(180.000 - 78.000 - 12.000) / 78.000 ≈ 115 % de ROI
+Año 1: ($180,000 - $78,000 - $12,000) / $78,000 = 115% ROI
+Año 2: $180,000 / $12,000 = 1,400% ROI (solo OPEX)
 
-Año 2:
-180.000 / 12.000 ≈ 1.400 % de ROI (solo OPEX)
-
-Período de repago (payback): aproximadamente 5,2 meses.
+Payback period: 5.2 meses
 ```
 
 ---
 
 ## 5. Escalabilidad
 
-### 5.1 De Fase 1 a Fase 2
+### 5.1 Fase 1 → Fase 2
 
-El sistema está diseñado para escalar de 5.400 tpa a 21.000 tpa:
+El sistema está diseñado para escalar de 5,400 tpa a 21,000 tpa:
 
-- Arquitectura modular: agregar pozas no requiere rediseño  
-- Costo marginal bajo: cada poza adicional ~5.000 USD (sensores)  
-- Datos acumulados: el modelo mejora con más información histórica  
+- **Arquitectura modular:** Agregar pozas no requiere rediseño
+- **Costo marginal bajo:** Cada poza adicional = $5,000 (solo sensores)
+- **Datos acumulados:** El modelo mejora con más datos
 
-### 5.2 Expansión funcional
+### 5.2 Expansión Funcional
 
 Capacidades futuras sin cambio de arquitectura:
 
-1. Mantenimiento predictivo de bombas y equipos  
-2. Optimización de rutas de bombeo entre pozas  
-3. Proyección de producción (forecasting) semanal/mensual  
-4. Integración con ERP para planificación  
-5. Dashboard ejecutivo con indicadores clave (KPIs) en tiempo real  
+1. **Mantenimiento predictivo** de bombas y equipos
+2. **Optimización de rutas de bombeo** entre pozas
+3. **Forecasting de producción** semanal/mensual
+4. **Integración con ERP** para planificación
+5. **Dashboard ejecutivo** con KPIs en tiempo real
 
 ---
 
-## 6. Riesgos y mitigación
+## 6. Riesgos y Mitigación
 
-| Riesgo                | Probabilidad | Impacto | Mitigación                                       |
-|-----------------------|--------------|---------|--------------------------------------------------|
-| Falla de sensores     | Media        | Medio   | Redundancia, alertas específicas de falla       |
-| Conectividad remota   | Alta         | Bajo    | Cache local, sincronización diferida             |
-| Deriva del modelo     | Media        | Medio   | Reentrenamiento trimestral con datos recientes  |
-| Resistencia de usuarios | Baja       | Alto    | Capacitación, interfaces simples e intuitivas   |
-
----
-
-## 7. Comparación con alternativas
-
-### Opción A: Continuar con el esquema actual (análisis manual)
-
-- Costos altos recurrentes (~80.000 USD/año).  
-- Tiempo de decisión lento (24-48 horas).  
-- Escalabilidad limitada.  
-- Trazabilidad parcial y con riesgo de errores.
-
-### Opción B: Tercerizar el monitoreo
-
-- Costos medios–altos (~60.000 USD/año).  
-- Dependencia de proveedores externos.  
-- Datos fuera del control directo de Galan.  
-- Latencia adicional en la toma de decisiones.
-
-### Opción C: Sistema propuesto (ML + automatización)
-
-- Inversión controlada (78.000 USD de CAPEX).  
-- OPEX bajo (12.000 USD/año).  
-- Información en tiempo cercano al real (< 5 minutos).  
-- Datos y conocimiento quedan dentro de la organización.  
-- Escalable a Fase 2 sin grandes incrementos de inversión.  
-- Trazabilidad completa para auditorías internas y externas.
+| Riesgo | Probabilidad | Impacto | Mitigación |
+|--------|--------------|---------|------------|
+| Falla de sensores | Media | Medio | Redundancia, alertas de falla |
+| Conectividad remota | Alta | Bajo | Cache local, sync posterior |
+| Deriva del modelo | Media | Medio | Reentrenamiento trimestral |
+| Rechazo de usuarios | Baja | Alto | Capacitación, UI intuitiva |
 
 ---
 
-## 8. Alineación estratégica
+## 7. Comparación con Alternativas
 
-### 8.1 Con los objetivos de Galan
+### Opción A: Status Quo (Análisis Manual)
+- ❌ Costos altos recurrentes ($80k/año)
+- ❌ Tiempo de decisión lento (24-48h)
+- ❌ Sin escalabilidad
+- ❌ Trazabilidad limitada
 
-- Producto premium: control de calidad consistente para cloruro de litio de alta pureza.  
-- Cumplimiento del cronograma: sistema operativo antes de la primera producción prevista para 2026.  
-- RIGI y marco regulatorio: soporte a trazabilidad robusta y auditoría permanente.  
-- Competitividad: mejora en eficiencia y calidad en un mercado global exigente.
+### Opción B: Outsourcing de Monitoreo
+- ⚠️ Costos medios-altos ($60k/año)
+- ⚠️ Dependencia de terceros
+- ❌ Datos fuera de control de Galan
+- ⚠️ Latencia en decisiones
 
-### 8.2 Con tendencias de la industria
-
-- Minería 4.0: adopción de IoT y modelos de IA en operación.  
-- ESG: uso más eficiente de recursos y reducción de reprocesos.  
-- Digitalización: alineación con expectativas de inversores y socios tecnológicos.
+### Opción C: Sistema Propuesto (ML + Automatización)
+- ✅ Inversión controlada ($78k CAPEX)
+- ✅ OPEX bajo ($12k/año)
+- ✅ Tiempo real (< 5 min)
+- ✅ Datos y conocimiento in-house
+- ✅ Escalable a Fase 2 sin grandes inversiones
+- ✅ Trazabilidad total
 
 ---
 
-## 9. Plan de implementación
+## 8. Alineación Estratégica
 
-### Fase 1: Piloto (Meses 1-2)
+### 8.1 Con Objetivos de Galan
 
-- Instrumentar una poza piloto.  
-- Entrenar el modelo con datos históricos combinados con datos sintéticos.  
-- Validar predicciones frente a resultados de laboratorio.
+- ✅ **Producto Premium:** Control de calidad para cloruro de litio alta pureza
+- ✅ **Timeline 2026:** Sistema operativo antes de primera producción
+- ✅ **RIGI Compliance:** Trazabilidad robusta para auditorías
+- ✅ **Competitividad:** Eficiencia operativa en mercado global
 
-### Fase 2: Despliegue (Meses 3-4)
+### 8.2 Con Tendencias de la Industria
 
-- Instrumentar 5 pozas en Fase 1.  
-- Automatización completa con n8n.  
-- Capacitación de operadores y supervisores.
+- ✅ **Minería 4.0:** Adopción de IoT + IA es tendencia global
+- ✅ **ESG:** Optimización reduce consumo de recursos
+- ✅ **Digitalización:** Cumple con expectativas de inversionistas
 
-### Fase 3: Optimización (Meses 5-6)
+---
 
-- Ajuste fino del modelo con datos reales.  
-- Incorporación progresiva de nuevas funcionalidades.  
-- Preparación para la transición a Fase 2 (21.000 tpa).
+## 9. Plan de Implementación
+
+### Fase 1: Piloto (Mes 1-2)
+- Instrumentar 1 poza
+- Entrenar modelo con datos históricos + sintéticos
+- Validar predicciones vs. laboratorio
+
+### Fase 2: Rollout (Mes 3-4)
+- Instrumentar 5 pozas de Fase 1
+- Automatización completa con n8n
+- Capacitación de operadores
+
+### Fase 3: Optimización (Mes 5-6)
+- Ajuste fino del modelo con datos reales
+- Expansión de funcionalidades
+- Preparación para Fase 2
 
 ---
 
 ## 10. Conclusión
 
-El **Sistema Predictivo de Calidad de Salmuera** constituye una inversión estratégica que:
+El **Sistema Predictivo de Calidad de Salmuera** es una inversión estratégica que:
 
-1. Genera valor económico tangible desde el primer año (ROI estimado de 115 %).  
-2. Reduce riesgos operativos y de calidad, y refuerza el cumplimiento regulatorio.  
-3. Acompaña el crecimiento del proyecto, desde Fase 1 hasta Fase 2.  
-4. Construye capacidades internas basadas en datos y conocimiento propio.
+1. **Genera valor inmediato:** ROI de 115% en año 1
+2. **Reduce riesgos:** Mejora calidad y cumplimiento regulatorio
+3. **Es escalable:** Crece con la operación (Fase 1 → Fase 2)
+4. **Construye capacidad:** Conocimiento y datos in-house
 
-**Recomendación:** avanzar con la implementación antes del inicio de la primera producción (2026) para capturar beneficios desde el arranque de operaciones.
+**Recomendación:** Implementar antes de primera producción (2026) para maximizar beneficios desde el inicio de operaciones.
 
 ---
 
 ## Contacto
 
-**Autor del proyecto**  
+**Autor del Proyecto:**  
 Fernando Molas García  
-Candidato – Analista Sr. de Inteligencia Artificial  
-
-- Email: f.mg@outlook.com  
-- LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)  
-- GitHub: [fmg75](https://github.com/fmg75)
+Candidato - Analista Sr. de Inteligencia Artificial  
+Email: f.mg@outlook.com  
+LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)  
+GitHub: [fmg75](https://github.com/fmg75)
 
 **Propósito de este documento:**  
-Demostración de capacidad de análisis de negocio y diseño de soluciones de punta a punta para Galan Lithium.
+Demostración de capacidad de análisis de negocio y diseño de soluciones end-to-end para Galan Lithium.

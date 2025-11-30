@@ -1,6 +1,6 @@
 # Sistema Inteligente de Monitoreo de Salmuera - Galan Lithium
 
-> Predicción en tiempo real de concentración de litio en pozas de evaporación mediante Machine Learning y automatización con n8n.
+> **Predicción en tiempo real de concentración de litio en pozas de evaporación mediante ML + Automatización con n8n**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![n8n](https://img.shields.io/badge/n8n-Workflow-orange.svg)
@@ -12,9 +12,18 @@
 
 ## Contexto
 
-Galan Lithium opera el proyecto Hombre Muerto West en el Salar del Hombre Muerto, Catamarca, con primera producción programada para el primer semestre de 2026. Su estrategia se centra en producir cloruro de litio de alta pureza, un producto premium demandado por la industria de baterías.
+**Galan Lithium** opera el proyecto Hombre Muerto West (HMW) en el **Salar del Hombre Muerto, Catamarca**, reconocido como un **recurso Top 10 global** con las salmueras de litio de más alta calidad y bajo perfil de impurezas en Argentina.
 
-Este proyecto muestra cómo la combinación de Inteligencia Artificial y automatización puede optimizar el proceso crítico de monitoreo de calidad en pozas de evaporación.
+**Estado actual del proyecto:**
+- Primera producción de cloruro de litio programada para **H1 2026**
+- **9,500 toneladas LCE** actualmente en pozas de evaporación
+- **18 meses de data operacional** acumulada
+- Fase 1: 5.4 ktpa LCE → Fase 2: 21 ktpa LCE
+- Beneficiario del régimen RIGI (incentivos fiscales)
+
+**Producto estratégico:** Cloruro de litio de alta pureza (6% LiCl concentrate), optimizado para baterías LFP (Lithium Iron Phosphate), la química dominante en vehículos eléctricos.
+
+Este proyecto demuestra cómo **Inteligencia Artificial + Automatización** pueden optimizar el proceso crítico de monitoreo de calidad en pozas de evaporación, aprovechando los 18 meses de data operacional existente.
 
 ---
 
@@ -22,35 +31,36 @@ Este proyecto muestra cómo la combinación de Inteligencia Artificial y automat
 
 En las operaciones actuales de extracción de litio por evaporación:
 
-- Los análisis de laboratorio tradicionales demoran entre 24 y 48 horas.
-- Las decisiones de bombeo entre pozas son reactivas, no predictivas.
-- Existe riesgo de procesar salmuera fuera de especificación para cloruro de litio premium.
-- Falta trazabilidad en tiempo real para cumplimiento normativo (por ejemplo, RIGI).
+- Los análisis de laboratorio tradicionales demoran 24-48 horas
+- Decisiones de bombeo entre pozas son reactivas, no predictivas
+- Riesgo de procesar salmuera fuera de especificación para cloruro de litio premium
+- Falta de trazabilidad en tiempo real para cumplimiento normativo (RIGI)
 
-Impacto: pérdidas operativas, retrasos en producción y riesgo en la calidad del producto final.
+**Impacto:** Pérdidas operativas, retrasos en producción, y riesgo de calidad en producto final.
 
 ---
 
 ## La Solución
 
-Sistema híbrido que reduce el tiempo de decisión desde 48 horas a menos de 5 minutos:
+Sistema híbrido que **reduce el tiempo de decisión de 48 horas a menos de 5 minutos**:
 
 ```
-[Sensores IoT] → [Automatización n8n] → [Modelo de Machine Learning] → [Decisiones automatizadas]
+[Sensores IoT] → [n8n Automatización] → [Modelo ML] → [Decisiones Automatizadas]
 ```
 
 ### Características principales
 
-1. Predicción de concentración de litio basada en variables físico-químicas.
-2. Automatización con n8n de todo el flujo de datos y reglas de negocio.
-3. Alertas en tiempo casi real cuando se alcanzan umbrales críticos.
-4. Trazabilidad completa de mediciones y decisiones.
+1. **Predicción ML**: Modelo que predice concentración de litio basado en parámetros físico-químicos
+2. **Automatización Inteligente**: Workflows n8n que orquestan todo el flujo de datos
+3. **Alertas en Tiempo Real**: Notificaciones automáticas cuando se alcanzan umbrales críticos
+4. **Trazabilidad Completa**: Registro de todas las mediciones y decisiones
+5. **Aprovechar data existente**: Diseñado para entrenar con los 18 meses de data operacional de Galan
 
 ---
 
 ## Arquitectura
 
-```text
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                    SENSORES IoT (Simulados)                 │
 │  Temperatura | Humedad | pH | Conductividad | Densidad     │
@@ -74,7 +84,7 @@ Sistema híbrido que reduce el tiempo de decisión desde 48 horas a menos de 5 m
 │              n8n WORKFLOW - Lógica de Negocio              │
 │  • Si Li > 4500 mg/L → Alerta "Bombear a siguiente poza"   │
 │  • Si Mg/Li > 10 → Alerta "Riesgo de contaminación"        │
-│  • Si fuera de rango → Notificación a supervisores         │
+│  • Si fuera de rango → Notificación supervisores            │
 └─────────────────────┬───────────────────────────────────────┘
                       │
                       ▼
@@ -88,32 +98,33 @@ Sistema híbrido que reduce el tiempo de decisión desde 48 horas a menos de 5 m
 
 ## Estado del Proyecto
 
-Proyecto en desarrollo activo, como demostración de capacidades técnicas.
+**En desarrollo activo** - Proyecto personal para demostración de capacidades técnicas
 
 ### Completado
 
-- Generador de datos sintéticos realistas basado en literatura técnica de salmueras.
-- Dataset de 1000 muestras con variables físico-químicas relevantes.
-- Modelo predictivo base con scikit-learn (R² = 0,89).
-- Documentación técnica del proceso.
-- Análisis exploratorio de datos.
+- [x] Generador de datos sintéticos realistas basado en literatura técnica de salmueras
+- [x] Dataset de 1000 muestras con variables físico-químicas relevantes
+- [x] Modelo predictivo base con scikit-learn (R² = 0.89)
+- [x] Documentación técnica del proceso
+- [x] Análisis exploratorio de datos
 
 ### En desarrollo
 
-- API REST con FastAPI para servir el modelo.
-- Workflows de automatización en n8n.
-- Sistema de alertas multi-canal.
-- Dashboard en tiempo real.
-- Containerización con Docker.
+- [ ] API REST con FastAPI para servir modelo
+- [ ] Workflows n8n de automatización
+- [ ] Sistema de alertas multi-canal
+- [ ] Dashboard en tiempo real
+- [ ] Containerización con Docker
 
 ### Roadmap futuro
 
-- Integración con PostgreSQL para persistencia.
-- Sistema de logs y auditoría robusto.
-- Modelos avanzados (XGBoost, ensembles).
-- Tests automatizados con pytest.
-- CI/CD con GitHub Actions.
-- Despliegue en la nube (AWS/GCP).
+- [ ] Reentrenamiento con 18 meses de data operacional real de Galan
+- [ ] Integración con PostgreSQL para persistencia
+- [ ] Sistema de logs y auditoría robusto
+- [ ] Modelos avanzados (XGBoost, ensembles)
+- [ ] Tests automatizados (pytest)
+- [ ] CI/CD con GitHub Actions
+- [ ] Despliegue en cloud (AWS/GCP)
 
 ---
 
@@ -121,21 +132,23 @@ Proyecto en desarrollo activo, como demostración de capacidades técnicas.
 
 ### Prerrequisitos
 
-- Python 3.9 o superior  
-- pip  
-- (Opcional) Docker
+```bash
+Python 3.9+
+pip
+(Opcional) Docker
+```
 
 ### Instalación
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/tu-usuario/galan-lithium-monitoring.git
+git clone https://github.com/fmg75/galan-lithium-monitoring.git
 cd galan-lithium-monitoring
 
 # Crear entorno virtual
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# venv\Scriptsctivate   # Windows
+# venv\Scripts\activate  # Windows
 
 # Instalar dependencias
 pip install -r requirements.txt
@@ -159,116 +172,128 @@ python train_model.py
 
 ## Estructura del Proyecto
 
-```text
+```
 galan-lithium-monitoring/
-├── README.md                          # Descripción general del proyecto
+├── README.md                          # Este archivo
 ├── requirements.txt                   # Dependencias Python
 ├── docker-compose.yml                 # Configuración Docker
 │
 ├── data/                              # Datos y generación
-│   ├── synthetic_data_generator.py    # Generador de datos sintéticos
-│   ├── sample_data.csv                # Dataset generado
-│   └── data_documentation.md          # Documentación de variables
+│   ├── synthetic_data_generator.py    # Completo - Generador de datos
+│   ├── sample_data.csv                # Completo - Dataset generado
+│   └── data_documentation.md          # Completo - Documentación de variables
 │
 ├── ml_model/                          # Modelos de Machine Learning
-│   ├── train_model.py                 # Entrenamiento
-│   ├── evaluate_model.py              # Evaluación
+│   ├── train_model.py                 # Completo - Entrenamiento
+│   ├── evaluate_model.py              # En desarrollo - Evaluación
 │   ├── model.pkl                      # Modelo entrenado
-│   ├── api_model.py                   # API FastAPI
-│   └── requirements.txt               # Dependencias específicas de ML
+│   ├── model_details.md               # Completo - Detalles técnicos
+│   ├── api_model.py                   # En desarrollo - API FastAPI
+│   └── requirements.txt               # Dependencias ML
 │
 ├── n8n_workflows/                     # Automatización n8n
-│   ├── workflow_v1_basic.json         # Workflow básico
-│   ├── workflow_v2_advanced.json      # Workflow planificado
-│   └── setup_instructions.md          # Instrucciones de configuración
+│   ├── workflow_v1_basic.json         # En desarrollo - Workflow básico
+│   ├── workflow_v2_advanced.json      # Planificado
+│   └── setup_instructions.md          # En desarrollo - Instrucciones
 │
 ├── docs/                              # Documentación
-│   ├── architecture_diagram.png       # Diagrama técnico
-│   ├── business_case.md               # Caso de negocio
-│   └── technical_notes.md             # Notas técnicas
+│   ├── business_case.md               # Completo - Caso de negocio
+│   ├── integration_architecture.md    # Completo - Integración SCADA
+│   ├── technical_assumptions.md       # Completo - Supuestos técnicos
+│   └── architecture_diagram.png       # En desarrollo - Diagrama técnico
 │
 └── notebooks/                         # Análisis exploratorio
-    └── exploratory_analysis.ipynb     # EDA
+    └── exploratory_analysis.ipynb     # En desarrollo - EDA
 ```
-
-Leyenda:  
-- Completado  
-- En desarrollo  
-- Planificado  
 
 ---
 
 ## Valor para Galan Lithium
 
-### Impacto operativo
+### Impacto Operativo Directo
 
-| Métrica              | Antes        | Después         | Mejora aproximada            |
-|----------------------|-------------|-----------------|------------------------------|
-| Tiempo de decisión   | 24-48 horas | < 5 minutos     | Reducción cercana al 99 %    |
-| Precisión de calidad | Análisis batch | Predicción continua | Evaluación casi en tiempo real |
-| Trazabilidad         | Manual      | Automática      | Registro completo            |
-| Costo por análisis   | Alto (laboratorio) | Bajo (sensor + ML) | Reducción estimada del 70-80 % |
+| Métrica | Antes | Después | Mejora |
+|---------|-------|---------|--------|
+| Tiempo de decisión | 24-48 horas | Menos de 5 minutos | 99.7% reducción |
+| Precisión de calidad | Análisis batch | Predicción continua | Tiempo real |
+| Trazabilidad | Manual | Automática | 100% registro |
+| Costo por análisis | Alto (laboratorio) | Bajo (sensor + ML) | 70-80% reducción |
 
-### Alineación estratégica
+### Alineación Estratégica
 
-- Enfoque en producto premium: control preciso para cloruro de litio de alta pureza.
-- Acompañamiento del cronograma: la primera producción en 2026 requiere sistemas de control desde etapas tempranas.
-- Soporte a cumplimiento normativo y fiscal (por ejemplo, RIGI) mediante trazabilidad automática.
-- Solución escalable desde Fase 1 hasta 21.000 tpa en Fase 2.
+- **Producto Premium**: Control preciso para cloruro de litio alta pureza (6% LiCl concentrate)
+- **Timeline Crítico**: Primera producción H1 2026 requiere sistemas ahora
+- **Cumplimiento RIGI**: Trazabilidad automática para incentivos fiscales
+- **Escalabilidad**: De Fase 1 (5.4 ktpa) a Fase 2 (21 ktpa)
+- **Aprovecha activos existentes**: 18 meses de data operacional lista para entrenar modelo
 
 ---
 
 ## Tecnologías Utilizadas
 
-### Core stack
+### Core Stack
 
-- Python 3.9+
-- scikit-learn
-- pandas y numpy
-- FastAPI
-- n8n
-- Docker
+- **Python 3.9+**: Lenguaje principal
+- **scikit-learn**: Machine Learning
+- **pandas / numpy**: Manipulación de datos
+- **FastAPI**: API REST para modelo
+- **n8n**: Automatización de workflows
+- **Docker**: Containerización
 
-### Librerías de Machine Learning
+### Librerías ML
 
-- scikit-learn: Random Forest, preprocesamiento.
-- joblib: serialización de modelos.
-- matplotlib y seaborn: visualización de datos.
+- `scikit-learn`: Random Forest, preprocessing
+- `joblib`: Serialización de modelos
+- `matplotlib / seaborn`: Visualizaciones
 
 ---
 
-## Documentación adicional
+## Documentación Adicional
 
-- Caso de negocio: `docs/business_case.md`  
-- Documentación de datos: `data/data_documentation.md`  
-- Configuración de n8n: `n8n_workflows/setup_instructions.md`
+- [Caso de Negocio](docs/business_case.md) - Análisis de ROI y valor empresarial
+- [Arquitectura de Integración](docs/integration_architecture.md) - Integración con sistemas SCADA/PLC existentes
+- [Supuestos Técnicos](docs/technical_assumptions.md) - Limitaciones y consideraciones del proyecto
+- [Detalles del Modelo ML](ml_model/model_details.md) - Feature engineering y decisiones de diseño
+- [Documentación de Datos](data/data_documentation.md) - Variables y rangos
 
 ---
 
 ## Autor
 
 **Fernando Molas García**  
-Candidato a Analista Sr. de Inteligencia Artificial - Galan Lithium
+Candidato para Analista Sr. de Inteligencia Artificial - Galan Lithium
 
-- Email: f.mg@outlook.com  
-- LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)  
+- Email: f.mg@outlook.com
+- LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)
 - GitHub: [fmg75](https://github.com/fmg75)
 
 ---
 
 ## Notas del Proyecto
 
-Este es un proyecto de demostración desarrollado como parte de una postulación a Galan Lithium. Los datos son sintéticos, pero se basan en literatura técnica real de salmueras del altiplano argentino.
+Este es un **proyecto de demostración** desarrollado como parte de mi aplicación a Galan Lithium. Los datos son sintéticos pero basados en literatura técnica real de salmueras del altiplano argentino y características específicas del recurso HMW.
 
-Objetivos principales:
+**Objetivo:** Demostrar capacidad de:
+1. Comprender problemas de negocio complejos
+2. Diseñar soluciones end-to-end (datos → modelo → automatización)
+3. Aprender tecnologías nuevas rápidamente (n8n en 1 semana)
+4. Comunicar valor técnico y empresarial
+5. Aprovechar activos existentes (18 meses de data operacional)
 
-1. Entender un problema de negocio complejo.
-2. Diseñar una solución de punta a punta (datos → modelo → automatización).
-3. Incorporar tecnologías nuevas en poco tiempo (por ejemplo, n8n).
-4. Comunicar de forma clara tanto el valor técnico como el valor para el negocio.
+**Próximo paso:** Reentrenar modelo con data operacional real de las 9,500 toneladas LCE en pozas de evaporación de Galan.
 
 ---
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia MIT.
+Este proyecto es de código abierto bajo licencia MIT.
+
+---
+
+## Agradecimientos
+
+Documentación técnica basada en:
+- Literatura científica sobre salmueras de litio del altiplano sudamericano
+- Información pública de operaciones mineras en Salar del Hombre Muerto
+- Presentaciones corporativas de Galan Lithium
+- Documentación oficial de n8n y scikit-learn

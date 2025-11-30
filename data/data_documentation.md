@@ -95,13 +95,17 @@ Los datos están basados en literatura técnica y científica sobre:
 #### `li_concentration_mg_l`
 - **Tipo:** Float
 - **Rango:** 200 - 6000 mg/L
-- **Descripción:** Concentración de litio en la salmuera
+- **Descripción:** Concentración de litio en la salmuera durante el proceso de evaporación
+- **Contexto específico de Galan Lithium:**
+  - Salmuera natural (recurso): ~841 mg/L (concentración inicial del salar)
+  - Post-evaporación (30-60 días): 2,000-3,000 mg/L
+  - Post-evaporación (90-180 días): 4,000-6,000 mg/L (objetivo para bombeo)
 - **Importancia:** Variable a predecir - determina momento óptimo de bombeo
 - **Criterios operativos:**
   - < 2000 mg/L: Concentración baja - continuar evaporación
   - 2000-3000 mg/L: Aceptable para procesamiento
   - 3000-4500 mg/L: Buena concentración
-  - \> 4500 mg/L: Óptima - listo para bombear a siguiente etapa
+  - > 4500 mg/L: Óptima - listo para bombear a siguiente etapa (concentrado 6% LiCl)
 - **Unidad:** miligramos por litro (mg/L)
 
 ---
