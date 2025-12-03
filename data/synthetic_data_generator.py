@@ -23,11 +23,12 @@ def generate_brine_data(n_samples=1000):
         # Días de evaporación (30-180 días es el rango típico)
         days_evaporation = np.random.uniform(30, 180)
         
-        # Temperatura (°C) - Catamarca altiplano: 15-35°C con variación estacional
-        base_temp = 25
-        temp_variation = np.sin(days_evaporation / 30) * 5  # Variación estacional
-        temperature = base_temp + temp_variation + np.random.normal(0, 2)
-        temperature = np.clip(temperature, 15, 35)
+        # Temperatura (°C) - Salar del Hombre Muerto: -10°C a 30°C
+        # Media: 23°C verano, 8°C invierno, con amplitud térmica día-noche de 20-25°C
+        base_temp = 18  # Temperatura base promedio anual
+        temp_variation = np.sin(days_evaporation / 30) * 8  # Variación estacional
+        temperature = base_temp + temp_variation + np.random.normal(0, 3)
+        temperature = np.clip(temperature, 5, 30)  # Rango operativo realista
         
         # Humedad relativa (%) - Clima árido: 10-40%
         humidity = np.random.uniform(10, 40)

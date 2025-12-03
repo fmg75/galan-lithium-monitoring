@@ -31,9 +31,13 @@ Los datos están basados en literatura técnica y científica sobre:
 
 #### 2. `temperature_c`
 - **Tipo:** Float
-- **Rango:** 15 - 35 °C
+- **Rango:** 5 - 30 °C (rango operativo)
 - **Descripción:** Temperatura ambiente en la ubicación de la poza
-- **Contexto:** Catamarca altiplano tiene alta amplitud térmica
+- **Contexto:** Salar del Hombre Muerto (4,000 msnm) tiene clima extremo
+  - Media verano: 23°C
+  - Media invierno: 8°C
+  - Heladas nocturnas: hasta -10°C
+  - Amplitud térmica día-noche: 20-25°C
 - **Impacto:** Mayor temperatura → mayor tasa de evaporación → mayor concentración
 - **Unidad:** Grados Celsius (°C)
 
