@@ -5,7 +5,7 @@ Galan Lithium - Hombre Muerto West
 
 from fastapi import FastAPI, HTTPException
 from contextlib import asynccontextmanager
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 from typing import Optional
 import joblib
 import pandas as pd
@@ -378,19 +378,50 @@ async def model_info():
     if MODEL is None:
         raise HTTPException(status_code=503, detail="Modelo no disponible")
     
-    info = {
-        "model_type": "RandomForestRegressor",
-        "features_count": len(FEATURE_NAMES) if FEATURE_NAMES else 0,
-        "features": FEATURE_NAMES if FEATURE_NAMES else []
-    }
-    
-    if MODEL_METADATA:
-        info.update({
-            "training_date": MODEL_METADATA.get('training_date', 'Unknown'),
-            "metrics": MODEL_METADATA.get('metrics', {})
-        })
-    
-    return info
+    try:
+        # Info básica siempre disponible
+        info = {
+            "model_type": "RandomForestRegressor",
+            "status": "loaded"
+        }
+        
+        # Agregar features si existen
+        if FEATURE_NAMES:
+            info['features_count'] = len(FEATURE_NAMES)
+            info['features_sample'] = FEATURE_NAMES[:5]  # Primeras 5
+        
+        # Agregar n_estimators del modelo
+        try:
+            if hasattr(MODEL, 'n_estimators'):
+                info['n_estimators'] = int(MODEL.n_estimators)
+        except:
+            pass
+        
+        # Agregar métricas si existen en metadata - CORREGIDO
+        try:
+            if MODEL_METADATA:
+                if isinstance(MODEL_METADATA, dict) and 'metrics' in MODEL_METADATA:
+                    metrics = MODEL_METADATA['metrics']
+                    # Convertir explícitamente a tipos serializables
+                    info['metrics'] = {}
+                    for key, value in metrics.items():
+                        # Convertir numpy/pandas types a Python natives
+                        if hasattr(value, 'item'):  # numpy scalar
+                            info['metrics'][key] = float(value.item())
+                        elif isinstance(value, (int, float, str, bool, type(None))):
+                            info['metrics'][key] = value
+                        else:
+                            # Para otros tipos, convertir a string
+                            info['metrics'][key] = str(value)
+        except Exception as e:
+            logger.warning(f"No se pudieron agregar métricas: {str(e)}")
+            # No fallar, simplemente no incluir las métricas
+        
+        return info
+        
+    except Exception as e:
+        logger.error(f"Error en model_info: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error interno: {str(e)}")
 
 
 if __name__ == "__main__":
