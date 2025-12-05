@@ -1,0 +1,304 @@
+{
+  "name": "Galan Lithium - Monitor Salmuera v1",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sensor-reading",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "id": "1571a8f5-2883-4f40-9693-fb15ee522b5c",
+      "name": "Webhook - Sensor Data",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1584,
+        -16
+      ],
+      "webhookId": "galan-sensor-webhook"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Validar que tenemos todos los campos requeridos\nconst requiredFields = [\n  'poza_id',\n  'days_evaporation',\n  'temperature_c',\n  'humidity_percent',\n  'ph',\n  'conductivity_ms_cm',\n  'density_g_cm3'\n];\n\nconst data = $input.item.json.body;\nconst errors = [];\n\n// Verificar campos requeridos\nfor (const field of requiredFields) {\n  if (data[field] === undefined || data[field] === null) {\n    errors.push(`Campo requerido faltante: ${field}`);\n  }\n}\n\n// Validar rangos\nconst validRanges = {\n  days_evaporation: [0, 365],\n  temperature_c: [-15, 35],\n  humidity_percent: [0, 100],\n  ph: [0, 14],\n  conductivity_ms_cm: [0, 200],\n  density_g_cm3: [1.0, 1.5]\n};\n\nfor (const [field, [min, max]] of Object.entries(validRanges)) {\n  const value = data[field];\n  if (value !== undefined && (value < min || value > max)) {\n    errors.push(`${field}=${value} fuera de rango [${min}, ${max}]`);\n  }\n}\n\n// Agregar timestamp si no existe\nif (!data.timestamp) {\n  data.timestamp = new Date().toISOString();\n}\n\n// Retornar resultado\nreturn {\n  json: {\n    valid: errors.length === 0,\n    errors: errors,\n    data: data,\n    validation_time: new Date().toISOString()\n  }\n};"
+      },
+      "id": "3aedbea6-dc1b-4f74-9fbe-20234b56a025",
+      "name": "Validar Datos",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1376,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.valid}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "aa1f1392-210f-4ead-a94b-8b16c6e94bb9",
+      "name": "¿Datos Válidos?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/predict",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.data }}",
+        "options": {}
+      },
+      "id": "8769ae1f-485e-41ce-ab35-f47d8f377edc",
+      "name": "API - Predict",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -976,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.predicted_concentration_mg_l}}",
+              "operation": "larger",
+              "value2": 4500
+            }
+          ]
+        }
+      },
+      "id": "251a9d9f-f41d-42c4-b1f3-31c1c82a884c",
+      "name": "¿Alta Concentración?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Preparar mensaje de alerta\nconst prediction = $input.item.json;\n\nconst message = `🚨 ALERTA - Alta Concentración de Litio\n\n📍 Poza: ${prediction.poza_id}\n⏰ Timestamp: ${prediction.timestamp}\n\n📊 RESULTADOS:\n• Concentración predicha: ${prediction.predicted_concentration_mg_l} mg/L\n• Estado de calidad: ${prediction.quality_status}\n• Confianza: ${prediction.confidence}\n\n💡 RECOMENDACIÓN:\n${prediction.recommendation}\n\n⚠️ ADVERTENCIAS:\n${prediction.warnings.length > 0 ? prediction.warnings.join('\\n') : 'Ninguna'}\n\n🔧 Modelo: ${prediction.model_version}\n\n---\nSistema de Monitoreo Inteligente - Galan Lithium HMW`;\n\nreturn {\n  json: {\n    subject: `🚨 ALERTA: ${prediction.poza_id} - Li ${prediction.predicted_concentration_mg_l} mg/L`,\n    message: message,\n    prediction: prediction,\n    alert_level: 'HIGH',\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "14e4304f-092f-46ee-a77e-75afa1272f1c",
+      "name": "Formatear Alerta",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -224
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Log en consola (se verá en Executions)\nconst pred = $input.item.json.prediction;\nconst alert = $input.item.json.alert_level;\n\nconsole.log(`[${alert}] ${pred.poza_id}: ${pred.predicted_concentration_mg_l} mg/L | ${pred.quality_status}`);\n\n// Retornar para siguiente nodo\nreturn $input.all();"
+      },
+      "id": "19e5363c-87a0-4a6d-8d42-ef07c9e4cd63",
+      "name": "Log Consola",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -224
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.prediction }}",
+        "options": {}
+      },
+      "id": "ea0c6e0b-2d8b-4ffc-9b17-d553815e5b70",
+      "name": "Responder Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{{\n  \"status\": \"error\",\n  \"message\": \"Datos inválidos\",\n  \"errors\": $json.errors\n}}}",
+        "options": {}
+      },
+      "id": "85e4351d-1fb5-47aa-9ee7-b18741438ef9",
+      "name": "Responder Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -976,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Log en consola\nconst pred = $input.item.json.prediction;\nconst alert = $input.item.json.alert_level;\n\nconsole.log(`[${alert}] ${pred.poza_id}: ${pred.predicted_concentration_mg_l} mg/L | ${pred.quality_status}`);\n\nreturn $input.all();"
+      },
+      "id": "5f98745d-c40e-41e3-bbe6-94de23a39739",
+      "name": "Log Consola Normal",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Log simple para concentración normal\nconst prediction = $input.item.json;\n\nreturn {\n  json: {\n    subject: `📊 Monitor: ${prediction.poza_id} - Li ${prediction.predicted_concentration_mg_l} mg/L`,\n    message: `Concentración normal. Continuar evaporación.`,\n    prediction: prediction,\n    alert_level: 'NORMAL',\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "cf399e7f-49f2-4b00-aea6-6d9b633e22fe",
+      "name": "Log Normal",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        16
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook - Sensor Data": {
+      "main": [
+        [
+          {
+            "node": "Validar Datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar Datos": {
+      "main": [
+        [
+          {
+            "node": "¿Datos Válidos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Datos Válidos?": {
+      "main": [
+        [
+          {
+            "node": "API - Predict",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API - Predict": {
+      "main": [
+        [
+          {
+            "node": "¿Alta Concentración?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Alta Concentración?": {
+      "main": [
+        [
+          {
+            "node": "Formatear Alerta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Normal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatear Alerta": {
+      "main": [
+        [
+          {
+            "node": "Log Consola",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Consola": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Consola Normal": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Normal": {
+      "main": [
+        [
+          {
+            "node": "Log Consola Normal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7c4fc9fd-e838-4260-acf0-931e0f527c96",
+  "meta": {
+    "instanceId": "7f36992f83551682c41e373d0369bb2c6c9b063c30c0d4e963404d592e96bf02"
+  },
+  "id": "cn80QZYQrBDO3RMh",
+  "tags": []
+}
