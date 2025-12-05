@@ -1,4 +1,4 @@
-# 🌊 Sistema Inteligente de Monitoreo de Salmuera
+# Sistema Inteligente de Monitoreo de Salmuera
 
 ### Predicción ML + Automatización n8n para Galan Lithium - Hombre Muerto West
 
@@ -9,60 +9,51 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [Descripción](#-descripción)
-- [El Problema](#-el-problema)
-- [La Solución](#-la-solución)
-- [Arquitectura](#-arquitectura)
-- [Inicio Rápido](#-inicio-rápido)
-- [Instalación Detallada](#-instalación-detallada)
-- [Uso](#-uso)
-- [Resultados](#-resultados)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Tecnologías](#-tecnologías)
-- [Roadmap](#-roadmap)
-- [Contexto del Proyecto](#-contexto-del-proyecto)
-- [Documentación Técnica](#-documentación-técnica)
-- [Autor](#-autor)
-- [Licencia](#-licencia)
+- [Descripción](#descripción)
+- [El Problema](#el-problema)
+- [La Solución](#la-solución)
+- [Arquitectura](#arquitectura)
+- [Inicio Rápido](#inicio-rápido)
+- [Instalación Detallada](#instalación-detallada)
+- [Uso](#uso)
+- [Resultados](#resultados)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Tecnologías](#tecnologías)
+- [Roadmap](#roadmap)
+- [Contexto del Proyecto](#contexto-del-proyecto)
+- [Documentación Técnica](#documentación-técnica)
+- [Autor](#autor)
+- [Licencia](#licencia)
 
 ---
 
-## 🎯 Descripción
+## Descripción
 
 Sistema híbrido de **Machine Learning + Automatización** que optimiza el monitoreo de calidad en pozas de evaporación de litio, reduciendo el tiempo de decisión de **48 horas a menos de 5 minutos**.
 
 Diseñado específicamente para las operaciones de **Galan Lithium** en el Salar del Hombre Muerto, Catamarca, aprovechando los **18 meses de data operacional** existente.
 
-### 🎥 Demo Visual
-
-> 📸 **Nota:** Agrega aquí screenshots del sistema funcionando
-
-```
-[Workflow de n8n - Vista General]
-[Ejecución exitosa mostrando predicción]
-[Terminal con simulador corriendo]
-```
 
 ---
 
-## ❌ El Problema
+## El Problema
 
 En las operaciones actuales de extracción de litio por evaporación solar:
 
 | Problema | Impacto |
 |----------|---------|
-| ⏰ Análisis de laboratorio demoran 24-48 horas | Decisiones lentas y reactivas |
-| 📊 Sin predicción en tiempo real | Riesgo de procesar salmuera fuera de especificación |
-| 📝 Falta de trazabilidad automática | Dificultad para cumplir requisitos normativos (RIGI) |
-| 💰 Alto costo por análisis de laboratorio | Escalabilidad limitada |
+| Análisis de laboratorio demoran 24-48 horas | Decisiones lentas y reactivas |
+| Sin predicción en tiempo real | Riesgo de procesar salmuera fuera de especificación |
+| Falta de trazabilidad automática | Dificultad para cumplir requisitos normativos (RIGI) |
+| Alto costo por análisis de laboratorio | Escalabilidad limitada |
 
 **Producto objetivo:** Cloruro de litio de alta pureza **(6% LiCl concentrate)** optimizado para baterías LFP.
 
 ---
 
-## ✅ La Solución
+## La Solución
 
 ### Sistema Híbrido: ML + Automatización
 
@@ -77,16 +68,16 @@ En las operaciones actuales de extracción de litio por evaporación solar:
 
 ### Características Principales
 
-- 🤖 **Modelo ML predictivo** - Random Forest con R² = 0.89
-- ⚡ **API REST ultrarrápida** - FastAPI con respuesta <100ms
-- 🔄 **Automatización inteligente** - n8n orquesta todo el flujo
-- 📊 **Monitoreo continuo** - Lecturas cada hora, predicciones instantáneas
-- 🚨 **Alertas automáticas** - Notificaciones cuando Li > 4500 mg/L
-- 📝 **Trazabilidad completa** - Logs de todas las decisiones
+- **Modelo ML predictivo** - Random Forest con R² = 0.89
+- **API REST ultrarrápida** - FastAPI con respuesta <100ms
+- **Automatización inteligente** - n8n orquesta todo el flujo
+- **Monitoreo continuo** - Lecturas cada hora, predicciones instantáneas
+- **Alertas automáticas** - Notificaciones cuando Li > 4500 mg/L
+- **Trazabilidad completa** - Logs de todas las decisiones
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ### Flujo de Datos
 
@@ -115,7 +106,22 @@ graph LR
 
 ---
 
-## 🚀 Inicio Rápido
+### 🎥 Demo Visual
+
+#### Arquitectura del Sistema
+![n8n Workflow](docs/images/n8n-workflow-overview.png)
+*Workflow completo de n8n mostrando el flujo de datos desde sensores hasta decisiones*
+
+#### Ejecuciones en Tiempo Real
+![Executions](docs/images/n8n-executions-success.png)
+*Panel de ejecuciones mostrando múltiples predicciones exitosas*
+
+#### Simulador en Acción
+![Simulator](docs/images/simulator-output.png)
+*Output del simulador mostrando monitoreo continuo de 3 pozas*
+
+
+## Inicio Rápido
 
 ### Opción A: Scripts Automáticos (Recomendado)
 
@@ -141,13 +147,13 @@ start.bat
 ```
 
 El script automáticamente:
-- ✅ Verifica dependencias
-- ✅ Instala paquetes necesarios
-- ✅ Entrena el modelo ML
-- ✅ Inicia n8n y API
-- ✅ Configura el workflow
+- Verifica dependencias
+- Instala paquetes necesarios
+- Entrena el modelo ML
+- Inicia n8n y API
+- Configura el workflow
 
-**⏱️ Tiempo total: ~2 minutos**
+**Tiempo total: ~2 minutos**
 
 ### Opción B: Manual (Paso a Paso)
 
@@ -155,7 +161,7 @@ Ver [SETUP_LOCAL.md](./SETUP_LOCAL.md) para instrucciones detalladas.
 
 ---
 
-## 📦 Instalación Detallada
+## Instalación Detallada
 
 ### Prerequisitos
 
@@ -222,12 +228,12 @@ python api_model.py
 python scripts/sensor_simulator.py test
 
 # O modo continuo
-python scripts/sensor_simulator.py continuous --prod
+python scripts/sensor_simulator.py continuous
 ```
 
 ---
 
-## 💻 Uso
+## Uso
 
 ### Comandos Principales
 
@@ -255,21 +261,24 @@ python scripts/sensor_simulator.py continuous --prod
 
 ### Ejemplo de Output del Simulador
 
+```
+================================================================================
+Iteración 1 - 19:45:23
+================================================================================
 
-### 🎥 Demo Visual
+POZA_1 | Días: 78.9 | HTTP 200
+   Entrada: T=22.3°C, H=18.5%, Cond=95.2 mS/cm
+   Predicción: 3245.8 mg/L | Estado: Bueno | Confianza: ALTA
+   Recomendación: Concentración en desarrollo. Continuar evaporación.
 
-#### Arquitectura del Sistema
-![n8n Workflow](docs/images/n8n-workflow-overview.png)
-*Workflow completo de n8n mostrando el flujo de datos desde sensores hasta decisiones*
+POZA_2 | Días: 145.2 | HTTP 200
+   Entrada: T=27.1°C, H=9.8%, Cond=138.4 mS/cm
+   Predicción: 4823.1 mg/L | Estado: Óptimo | Confianza: ALTA
+   Recomendación: Concentración óptima alcanzada. Recomendar bombeo.
+   ALERTA: Concentración óptima para bombeo a siguiente etapa
 
-#### Ejecuciones en Tiempo Real
-![Executions](docs/images/n8n-executions-success.png)
-*Panel de ejecuciones mostrando múltiples predicciones exitosas*
-
-#### Simulador en Acción
-![Simulator](docs/images/simulator-output.png)
-*Output del simulador mostrando monitoreo continuo de 3 pozas*
-
+Resumen: 1 alerta(s) generada(s) en esta iteración
+```
 
 ### API - Endpoint Principal
 
@@ -307,14 +316,14 @@ curl -X POST http://localhost:8000/predict \
 
 ---
 
-## 📊 Resultados
+## Resultados
 
 ### Métricas de Impacto
 
 | Métrica | Antes (Tradicional) | Después (ML + n8n) | Mejora |
 |---------|---------------------|---------------------|---------|
-| **Tiempo de decisión** | 24-48 horas | <5 minutos | **99.7% ↓** |
-| **Costo por análisis** | Alto (laboratorio) | Bajo (sensor + ML) | **70-80% ↓** |
+| **Tiempo de decisión** | 24-48 horas | <5 minutos | **99.7% reducción** |
+| **Costo por análisis** | Alto (laboratorio) | Bajo (sensor + ML) | **70-80% reducción** |
 | **Precisión de calidad** | Análisis batch | Predicción continua | **Tiempo real** |
 | **Trazabilidad** | Manual | Automática 100% | **Cumplimiento RIGI** |
 
@@ -334,73 +343,68 @@ Features principales:
 
 ### Valor Estratégico para Galan Lithium
 
-- 🎯 **Timeline crítico**: Primera producción H1 2026 requiere sistemas ahora
-- 💎 **Producto premium**: Control preciso para LiCl 6% alta pureza
-- 📈 **Escalabilidad**: De Fase 1 (5.4 ktpa) a Fase 2 (21 ktpa)
-- 💰 **ROI inmediato**: Aprovecha 18 meses de data operacional existente
-- 📋 **Cumplimiento RIGI**: Trazabilidad automática para incentivos fiscales
+- **Timeline crítico**: Primera producción H1 2026 requiere sistemas ahora
+- **Producto premium**: Control preciso para LiCl 6% alta pureza
+- **Escalabilidad**: De Fase 1 (5.4 ktpa) a Fase 2 (21 ktpa)
+- **ROI inmediato**: Aprovecha 18 meses de data operacional existente
+- **Cumplimiento RIGI**: Trazabilidad automática para incentivos fiscales
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 galan-lithium-monitoring/
 │
-├── 📄 README.md                      # Este archivo
-├── 📄 QUICKSTART.md                  # Guía de inicio rápido
-├── 📄 SETUP_LOCAL.md                 # Setup paso a paso
-├── 📄 requirements.txt               # Dependencias Python globales
-├── 📄 LICENSE                        # Licencia MIT
+├── README.md                      # Este archivo
+├── QUICKSTART.md                  # Guía de inicio rápido
+├── SETUP_LOCAL.md                 # Setup paso a paso
+├── requirements.txt               # Dependencias Python globales
+├── LICENSE                        # Licencia MIT
 │
-├── 🚀 start.sh / start.bat          # Scripts de inicio automático
-├── 🛑 stop.sh / stop.bat            # Scripts para detener servicios
+├── start.sh / start.bat           # Scripts de inicio automático
+├── stop.sh / stop.bat             # Scripts para detener servicios
 │
-├── 📊 data/                          # Datos y generación
-│   ├── synthetic_data_generator.py  # ✅ Generador de datos
-│   ├── sample_data.csv              # ✅ Dataset 1000 muestras
-│   └── data_documentation.md        # ✅ Documentación variables
+├── data/                          # Datos y generación
+│   ├── synthetic_data_generator.py
+│   ├── sample_data.csv
+│   └── data_documentation.md
 │
-├── 🤖 ml_model/                      # Machine Learning
-│   ├── train_model.py               # ✅ Entrenamiento
-│   ├── evaluate_model.py            # ✅ Evaluación
-│   ├── api_model.py                 # ✅ API FastAPI
-│   ├── model.pkl                    # Modelo entrenado
-│   ├── model_metadata.pkl           # Metadata del modelo
-│   ├── model_details.md             # ✅ Detalles técnicos
-│   ├── requirements.txt             # Dependencias ML
-│   └── Dockerfile                   # Para containerización
+├── ml_model/                      # Machine Learning
+│   ├── train_model.py
+│   ├── evaluate_model.py
+│   ├── api_model.py
+│   ├── model.pkl
+│   ├── model_metadata.pkl
+│   ├── model_details.md
+│   ├── requirements.txt
+│   └── Dockerfile
 │
-├── 🔄 n8n_workflows/                 # Automatización
-│   ├── workflow_v1_basic.json       # ✅ Workflow principal
-│   └── test_payloads/               # Ejemplos de JSON
+├── n8n_workflows/                 # Automatización
+│   ├── workflow_v1_basic.json
+│   └── test_payloads/
 │       └── examples.json
 │
-├── 🎬 scripts/                       # Scripts auxiliares
-│   └── sensor_simulator.py          # ✅ Simulador IoT
+├── scripts/                       # Scripts auxiliares
+│   └── sensor_simulator.py
 │
-├── 📝 logs/                          # Logs (generado)
-│   ├── predictions.csv              # Predicciones guardadas
-│   ├── n8n.log                      # Log de n8n
-│   └── api.log                      # Log de API
+├── logs/                          # Logs (generado)
+│   ├── predictions.csv
+│   ├── n8n.log
+│   └── api.log
 │
-├── 📚 docs/                          # Documentación técnica
-│   ├── business_case.md             # ✅ Caso de negocio
-│   ├── integration_architecture.md  # ✅ Integración SCADA
-│   ├── technical_assumptions.md     # ✅ Supuestos técnicos
-│   └── images/                      # Screenshots
+├── docs/                          # Documentación técnica
+│   ├── business_case.md
+│   ├── integration_architecture.md
+│   ├── technical_assumptions.md
+│   └── images/
 │
-└── 🐳 docker-compose.yml             # Docker setup (opcional)
+└── docker-compose.yml             # Docker setup (opcional)
 ```
-
-**Leyenda:**
-- ✅ Completado y funcional
-- 🚧 En desarrollo
-- 📋 Por implementar
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 ### Core Stack
 
@@ -430,9 +434,9 @@ galan-lithium-monitoring/
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### ✅ Fase 1: MVP (Completado)
+### Fase 1: MVP (Completado)
 
 - [x] Generador de datos sintéticos
 - [x] Modelo ML base (R² = 0.89)
@@ -441,7 +445,7 @@ galan-lithium-monitoring/
 - [x] Simulador de sensores
 - [x] Documentación completa
 
-### 🚧 Fase 2: Producción (En Progreso)
+### Fase 2: Producción (En Progreso)
 
 - [ ] Reentrenamiento con 18 meses de data real de Galan
 - [ ] Dashboard web en tiempo real
@@ -450,7 +454,7 @@ galan-lithium-monitoring/
 - [ ] Notificaciones por email/Slack reales
 - [ ] Tests automatizados (pytest)
 
-### 📋 Fase 3: Escalabilidad (Planificado)
+### Fase 3: Escalabilidad (Planificado)
 
 - [ ] Modelos avanzados (XGBoost, ensembles)
 - [ ] A/B testing de modelos
@@ -463,18 +467,18 @@ galan-lithium-monitoring/
 
 ---
 
-## 🌎 Contexto del Proyecto
+## Contexto del Proyecto
 
 ### Galan Lithium - Hombre Muerto West (HMW)
 
 **Ubicación:** Salar del Hombre Muerto, Catamarca, Argentina
 
 **Características del recurso:**
-- 🏆 Recurso Top 10 global de litio
-- 💎 Salmueras de más alta calidad en Argentina
-- 🧪 Bajo perfil de impurezas (Mg/Li < 6)
-- 📊 9,500 toneladas LCE actualmente en pozas
-- 📅 18 meses de data operacional acumulada
+- Recurso Top 10 global de litio
+- Salmueras de más alta calidad en Argentina
+- Bajo perfil de impurezas (Mg/Li < 6)
+- 9,500 toneladas LCE actualmente en pozas
+- 18 meses de data operacional acumulada
 
 **Timeline:**
 - **H1 2026**: Primera producción de cloruro de litio
@@ -491,7 +495,7 @@ galan-lithium-monitoring/
 - Requiere trazabilidad y cumplimiento normativo
 - Sistema automatizado facilita compliance
 
-### ¿Por qué este proyecto?
+### Justificación del Proyecto
 
 Este proyecto demuestra cómo la **Inteligencia Artificial + Automatización** pueden:
 
@@ -504,7 +508,7 @@ Este proyecto demuestra cómo la **Inteligencia Artificial + Automatización** p
 
 ---
 
-## 📚 Documentación Técnica
+## Documentación Técnica
 
 ### Documentos Disponibles
 
@@ -518,44 +522,37 @@ Este proyecto demuestra cómo la **Inteligencia Artificial + Automatización** p
 | **Setup Local** | Instalación paso a paso | [SETUP_LOCAL.md](SETUP_LOCAL.md) |
 | **Inicio Rápido** | Guía de 5 minutos | [QUICKSTART.md](QUICKSTART.md) |
 
-### Análisis y Notebooks
-
-```bash
-# Análisis exploratorio de datos
-notebooks/exploratory_analysis.ipynb  # 🚧 En desarrollo
-```
-
 ---
 
-## 🎓 Aprendizajes y Decisiones de Diseño
+## Aprendizajes y Decisiones de Diseño
 
 ### ¿Por qué Random Forest?
 
-- ✅ Maneja bien relaciones no lineales
-- ✅ Robusto a outliers
-- ✅ Interpretable (feature importance)
-- ✅ No requiere normalización de features
-- ✅ Performance sólida sin tuning excesivo
+- Maneja bien relaciones no lineales
+- Robusto a outliers
+- Interpretable (feature importance)
+- No requiere normalización de features
+- Performance sólida sin tuning excesivo
 
 ### ¿Por qué n8n?
 
-- ✅ Open source y self-hosted
-- ✅ Interface visual para workflows
-- ✅ Fácil integración con APIs
-- ✅ Bajo código (low-code)
-- ✅ Escalable y mantenible
+- Open source y self-hosted
+- Interface visual para workflows
+- Fácil integración con APIs
+- Bajo código (low-code)
+- Escalable y mantenible
 
 ### ¿Por qué FastAPI?
 
-- ✅ Performance excepcional (async)
-- ✅ Documentación automática (Swagger)
-- ✅ Validación de datos con Pydantic
-- ✅ Type hints nativos de Python
-- ✅ Fácil deployment
+- Performance excepcional (async)
+- Documentación automática (Swagger)
+- Validación de datos con Pydantic
+- Type hints nativos de Python
+- Fácil deployment
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Tests Manuales
 
@@ -587,7 +584,7 @@ pytest tests/test_workflow.py
 
 ---
 
-## 🐳 Docker (Opcional)
+## Docker (Opcional)
 
 ### Deployment con Docker Compose
 
@@ -611,11 +608,11 @@ Ver [docker-compose.yml](docker-compose.yml) para detalles.
 
 ---
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Este es un proyecto de demostración personal, pero sugerencias y feedback son bienvenidos.
 
-### ¿Cómo contribuir?
+### Cómo contribuir
 
 1. Fork el repositorio
 2. Crea un branch (`git checkout -b feature/AmazingFeature`)
@@ -625,12 +622,12 @@ Este es un proyecto de demostración personal, pero sugerencias y feedback son b
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Problemas Comunes
 
 <details>
-<summary><b>❌ "Port 5678 already in use"</b></summary>
+<summary><b>Port 5678 already in use</b></summary>
 
 ```bash
 # Detener n8n existente
@@ -640,7 +637,7 @@ taskkill /IM node.exe /F  # Windows
 </details>
 
 <details>
-<summary><b>❌ "Model not found"</b></summary>
+<summary><b>Model not found</b></summary>
 
 ```bash
 cd ml_model
@@ -649,7 +646,7 @@ python train_model.py
 </details>
 
 <details>
-<summary><b>❌ "Webhook not registered"</b></summary>
+<summary><b>Webhook not registered</b></summary>
 
 1. Verifica que el workflow esté **activo** (toggle verde)
 2. Click en el nodo Webhook y "Listen for test event"
@@ -657,7 +654,7 @@ python train_model.py
 </details>
 
 <details>
-<summary><b>❌ "Connection refused" al webhook</b></summary>
+<summary><b>Connection refused al webhook</b></summary>
 
 ```bash
 # Verificar que n8n está corriendo
@@ -672,30 +669,30 @@ Ver [SETUP_LOCAL.md - Troubleshooting](SETUP_LOCAL.md#troubleshooting) para más
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Fernando Molas García**
 
-- 📧 Email: [f.mg@outlook.com](mailto:f.mg@outlook.com)
-- 💼 LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)
-- 🐙 GitHub: [@fmg75](https://github.com/fmg75)
+- Email: [f.mg@outlook.com](mailto:f.mg@outlook.com)
+- LinkedIn: [fernando-molas-garcia](https://www.linkedin.com/in/fernando-molas-garcia/)
+- GitHub: [@fmg75](https://github.com/fmg75)
 
 ### Sobre este Proyecto
 
 Este proyecto fue desarrollado como demostración de capacidades técnicas para la posición de **Analista Sr. de Inteligencia Artificial** en Galan Lithium.
 
 **Objetivo:** Demostrar habilidad para:
-- ✅ Comprender problemas de negocio complejos
-- ✅ Diseñar soluciones end-to-end (datos → modelo → automatización)
-- ✅ Aprender tecnologías nuevas rápidamente (n8n)
-- ✅ Comunicar valor técnico y empresarial
-- ✅ Aprovechar activos de data existentes
+- Comprender problemas de negocio complejos
+- Diseñar soluciones end-to-end (datos → modelo → automatización)
+- Aprender tecnologías nuevas rápidamente (n8n)
+- Comunicar valor técnico y empresarial
+- Aprovechar activos de data existentes
 
 **Timeline de desarrollo:** 1 semana intensiva
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
@@ -711,7 +708,7 @@ in the Software without restriction...
 
 ---
 
-## 🙏 Agradecimientos
+## Agradecimientos
 
 - **Galan Lithium** por la inspiración y el contexto del proyecto
 - **Comunidad n8n** por la excelente herramienta de automatización
@@ -720,19 +717,19 @@ in the Software without restriction...
 
 ---
 
-## 📞 Contacto
+## Contacto
 
 ¿Preguntas, sugerencias o interés en colaborar?
 
-- 📧 Email: [f.mg@outlook.com](mailto:f.mg@outlook.com)
-- 💼 LinkedIn: [Enviar mensaje](https://www.linkedin.com/in/fernando-molas-garcia/)
-- 🐙 GitHub Issues: [Abrir issue](https://github.com/fmg75/galan-lithium-monitoring/issues)
+- Email: [f.mg@outlook.com](mailto:f.mg@outlook.com)
+- LinkedIn: [Enviar mensaje](https://www.linkedin.com/in/fernando-molas-garcia/)
+- GitHub Issues: [Abrir issue](https://github.com/fmg75/galan-lithium-monitoring/issues)
 
 ---
 
-## ⭐ Si te gustó este proyecto
+## Si te gustó este proyecto
 
-- Dale una ⭐ al repo
+- Dale una estrella al repo
 - Compártelo en LinkedIn
 - Déjame tu feedback
 
@@ -740,10 +737,10 @@ in the Software without restriction...
 
 <div align="center">
 
-**🌊 Sistema Inteligente de Monitoreo de Salmuera**
+**Sistema Inteligente de Monitoreo de Salmuera**
 
-Desarrollado con ❤️ para optimizar la producción de litio en Argentina
+Desarrollado para optimizar la producción de litio en Argentina
 
-[⬆️ Volver arriba](#-sistema-inteligente-de-monitoreo-de-salmuera)
+[Volver arriba](#sistema-inteligente-de-monitoreo-de-salmuera)
 
 </div>
